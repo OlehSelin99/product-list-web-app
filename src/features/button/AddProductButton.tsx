@@ -1,96 +1,85 @@
-import { useState } from "react"
-import { useDispatch } from "react-redux"
-import { addProduct } from "../list/productsSlice"
+import { useDispatch, useSelector } from "react-redux"
+import { RootState } from "../../app/store"
+import { addProduct, updateFormField, resetForm } from "../list/productsSlice"
 import { v4 as uuidv4 } from "uuid"
+import { useState } from "react"
 
 export const AddProductButton = () => {
-  const dispatch = useDispatch()
-
   const [isModalOpen, setModalOpen] = useState(false)
-  const [name, setName] = useState("")
-  const [size, setSize] = useState("")
-  const [count, setCount] = useState<number | "">("")
-  const [weight, setWeight] = useState("")
-  const [height, setHeight] = useState("")
-  const [width, setWidth] = useState("")
 
-  const [comments, setComments] = useState("")
+  const dispatch = useDispatch()
+  const form = useSelector((state: RootState) => state.products.form)
+
+  const handleChange =
+    (field: string) =>
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      dispatch(updateFormField({ field: field as any, value: e.target.value }))
+    }
 
   const handleSubmit = () => {
-    // if (!name || price === "" || !description) return
-
     dispatch(
       addProduct({
         id: uuidv4(),
-        name,
-        count: Number(count),
+        name: form.name,
+        count: Number(form.count),
         size: {
-          width: Number(size),
-          height: Number(size),
+          width: Number(form.width),
+          height: Number(form.height),
+          weight: Number(form.weight),
         },
-        weight,
-        comments: comments.split(",").map(c => c.trim()),
+        comments: form.comments,
       }),
     )
 
-    setName("")
-    setCount("")
-    setWidth("")
-    setHeight("")
-    setWeight("")
-    setComments("")
+    dispatch(resetForm())
+  }
+
+  const handleDecline = () => {
     setModalOpen(false)
   }
 
   return (
     <>
       <button onClick={() => setModalOpen(true)}>Add Product</button>
-
       {isModalOpen && (
-        <div className="modal">
-          <h2>Add New Product</h2>
+        <div>
           <input
+            value={form.name}
+            onChange={handleChange("name")}
             placeholder="Name"
-            value={name}
-            onChange={e => setName(e.target.value)}
           />
           <input
-            placeholder="Image"
-            type="url"
-            value={count}
-            onChange={e => setCount(Number(e.target.value))}
+            value={form.count}
+            onChange={handleChange("count")}
+            placeholder="Count"
           />
           <input
+            value={form.size}
+            onChange={handleChange("size")}
             placeholder="Size"
-            value={size}
-            onChange={e => setSize(e.target.value)}
           />
-
           <input
+            value={form.width}
+            onChange={handleChange("width")}
             placeholder="Width"
-            value={width}
-            onChange={e => setWidth(e.target.value)}
           />
-
           <input
+            value={form.height}
+            onChange={handleChange("height")}
             placeholder="Height"
-            value={height}
-            onChange={e => setHeight(e.target.value)}
           />
-
           <input
+            value={form.weight}
+            onChange={handleChange("weight")}
             placeholder="Weight"
-            value={weight}
-            onChange={e => setWeight(e.target.value)}
           />
-          <input
+          <textarea
+            value={form.comments}
+            onChange={handleChange("comments")}
             placeholder="Comments"
-            value={comments}
-            onChange={e => setComments(e.target.value)}
           />
-
           <button onClick={handleSubmit}>Confirm</button>
-          <button onClick={() => setModalOpen(false)}>Cancel</button>
+          <button onClick={handleDecline}>Decline</button>
         </div>
       )}
     </>

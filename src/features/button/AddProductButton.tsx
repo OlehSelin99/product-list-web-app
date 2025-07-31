@@ -1,19 +1,3 @@
-// import React from "react"
-// import { Button, Flex } from "antd"
-
-// interface PrimaryButtonProps {
-//   value: string
-// }
-
-// const PrimaryButton: React.FC<PrimaryButtonProps> = ({ value }) => (
-//   <Flex gap="small" wrap>
-//     <Button type="primary">{value}</Button>
-//   </Flex>
-// )
-
-// export default PrimaryButton
-
-// components/AddProductButton.tsx
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { addProduct } from "../list/productsSlice"
@@ -23,25 +7,30 @@ export const AddProductButton = () => {
   const dispatch = useDispatch()
   const [isModalOpen, setModalOpen] = useState(false)
   const [name, setName] = useState("")
-  const [price, setPrice] = useState<number | "">("")
-  const [description, setDescription] = useState("")
+  const [size, setSize] = useState("")
+  const [count, setCount] = useState<number | "">("")
+  const [weight, setWeight] = useState("")
+  // const [description, setDescription] = useState("")
 
   const handleSubmit = () => {
-    if (!name || price === "" || !description) return
+    // if (!name || price === "" || !description) return
 
     dispatch(
       addProduct({
         id: uuidv4(),
         name,
-        price: Number(price),
-        description,
+        count: Number(count),
+        size: {
+          width: Number(size),
+          height: Number(size),
+        },
+        weight,
       }),
     )
 
-   
     setName("")
-    setPrice("")
-    setDescription("")
+    setCount("")
+    // setDescription("")
     setModalOpen(false)
   }
 
@@ -58,15 +47,20 @@ export const AddProductButton = () => {
             onChange={e => setName(e.target.value)}
           />
           <input
-            placeholder="Price"
-            type="number"
-            value={price}
-            onChange={e => setPrice(Number(e.target.value))}
+            placeholder="Image"
+            type="url"
+            value={count}
+            onChange={e => setCount(Number(e.target.value))}
           />
           <input
-            placeholder="Description"
-            value={description}
-            onChange={e => setDescription(e.target.value)}
+            placeholder="Suze"
+            value={size}
+            onChange={e => setSize(e.target.value)}
+          />
+          <input
+            placeholder="Weight"
+            value={weight}
+            onChange={e => setWeight(e.target.value)}
           />
 
           <button onClick={handleSubmit}>Confirm</button>

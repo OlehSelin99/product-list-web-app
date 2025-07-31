@@ -2,9 +2,15 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 
 interface Product {
   id: string
-  name: string
-  price: number
-  description: string
+  imageUrl?: string
+  name?: string
+  count: number
+  size?: {
+    width: number
+    height: number
+  }
+  weight?: string
+  comments?: string[]
 }
 
 interface ProductsState {

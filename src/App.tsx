@@ -1,6 +1,7 @@
 import React from "react"
 import { Flex, Layout } from "antd"
 import ListProducts from "./features/list/ListProducts"
+import { AddProductButton } from "./features/button/AddProductButton"
 
 const { Header, Footer, Content } = Layout
 
@@ -39,6 +40,7 @@ const App: React.FC = () => (
     <Layout style={layoutStyle}>
       <Header style={headerStyle}>Product List Web App</Header>
       <Content style={contentStyle}>
+        <AddProductButton />
         <ListProducts />
       </Content>
       <Footer style={footerStyle}>by @oleh__selin</Footer>

@@ -1,7 +1,9 @@
 import React from "react"
 import { Flex, Layout } from "antd"
 import ListProducts from "./features/list/ListProducts"
-import { AddProductButton } from "./features/button/AddProductButton"
+import ModalListProducts from "./features/list/ModalListProducts"
+import ModalRemove from "./features/list/ModalRemove"
+import { DeleteProductButton } from "./features/button/DeleteProductButton"
 
 const { Header, Footer, Content } = Layout
 
@@ -15,6 +17,7 @@ const headerStyle: React.CSSProperties = {
 }
 
 const contentStyle: React.CSSProperties = {
+  textAlign: "center",
   padding: "24px",
   backgroundColor: "#0958d9",
   color: "#fff",
@@ -35,12 +38,23 @@ const layoutStyle = {
   height: "100vh",
 }
 
+const buttonStyle = {
+  display: "flex",
+  justifyContent: "center",
+}
+
 const App: React.FC = () => (
   <Flex gap="middle" wrap>
     <Layout style={layoutStyle}>
       <Header style={headerStyle}>Product List Web App</Header>
       <Content style={contentStyle}>
-        <AddProductButton />
+        <div style={buttonStyle}>
+          <ModalListProducts />
+
+          <ModalRemove />
+
+          {/* <DeleteProductButton /> */}
+        </div>
         <ListProducts />
       </Content>
       <Footer style={footerStyle}>by @oleh__selin</Footer>

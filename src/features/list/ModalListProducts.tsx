@@ -1,11 +1,20 @@
+import React, { useState } from "react"
+import { Button, Modal } from "antd"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../../app/store"
 import { addProduct, updateFormField, resetForm } from "../list/productsSlice"
 import { v4 as uuidv4 } from "uuid"
-import { useState } from "react"
 
-export const AddProductButton = () => {
-  const [isModalOpen, setModalOpen] = useState(false)
+const ModalListProducts: React.FC = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const showModal = () => {
+    setIsModalOpen(true)
+  }
+
+  const handleCancel = () => {
+    setIsModalOpen(false)
+  }
 
   const dispatch = useDispatch()
   const form = useSelector((state: RootState) => state.products.form)
@@ -16,7 +25,7 @@ export const AddProductButton = () => {
       dispatch(updateFormField({ field: field as any, value: e.target.value }))
     }
 
-  const handleSubmit = () => {
+  const handleOk = () => {
     dispatch(
       addProduct({
         id: uuidv4(),
@@ -32,16 +41,22 @@ export const AddProductButton = () => {
     )
 
     dispatch(resetForm())
-  }
-
-  const handleDecline = () => {
-    setModalOpen(false)
+    setIsModalOpen(false)
   }
 
   return (
     <>
-      <button onClick={() => setModalOpen(true)}>Add Product</button>
-      {isModalOpen && (
+      <Button type="primary" onClick={showModal}>
+        Add Product
+      </Button>
+
+      <Modal
+        title="Basic Modal"
+        closable={{ "aria-label": "Custom Close Button" }}
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
         <div>
           <input
             value={form.name}
@@ -78,10 +93,10 @@ export const AddProductButton = () => {
             onChange={handleChange("comments")}
             placeholder="Comments"
           />
-          <button onClick={handleSubmit}>Confirm</button>
-          <button onClick={handleDecline}>Decline</button>
         </div>
-      )}
+      </Modal>
     </>
   )
 }
+
+export default ModalListProducts

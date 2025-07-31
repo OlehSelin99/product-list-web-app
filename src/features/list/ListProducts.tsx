@@ -7,10 +7,8 @@ const ListProducts: React.FC = () => {
   const products = useSelector((state: RootState) => state.products.list)
   return (
     <>
-      <Divider orientation="left">Products List</Divider>
+      <Divider orientation="center">Products List</Divider>
       <List
-        header={<div>Header</div>}
-        footer={<div>Footer</div>}
         bordered
         dataSource={products}
         renderItem={item => (

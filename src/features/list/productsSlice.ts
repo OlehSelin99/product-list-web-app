@@ -3,13 +3,13 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 interface Product {
   id: string
   imageUrl?: string
-  name?: string
+  name: string
   count: number
-  size?: {
+  size: {
     width: number
     height: number
   }
-  weight?: string
+  weight: string
   comments?: string[]
 }
 

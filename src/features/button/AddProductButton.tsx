@@ -5,12 +5,16 @@ import { v4 as uuidv4 } from "uuid"
 
 export const AddProductButton = () => {
   const dispatch = useDispatch()
+
   const [isModalOpen, setModalOpen] = useState(false)
   const [name, setName] = useState("")
   const [size, setSize] = useState("")
   const [count, setCount] = useState<number | "">("")
   const [weight, setWeight] = useState("")
-  // const [description, setDescription] = useState("")
+  const [height, setHeight] = useState("")
+  const [width, setWidth] = useState("")
+
+  const [comments, setComments] = useState("")
 
   const handleSubmit = () => {
     // if (!name || price === "" || !description) return
@@ -25,12 +29,16 @@ export const AddProductButton = () => {
           height: Number(size),
         },
         weight,
+        comments: comments.split(",").map(c => c.trim()),
       }),
     )
 
     setName("")
     setCount("")
-    // setDescription("")
+    setWidth("")
+    setHeight("")
+    setWeight("")
+    setComments("")
     setModalOpen(false)
   }
 
@@ -53,14 +61,32 @@ export const AddProductButton = () => {
             onChange={e => setCount(Number(e.target.value))}
           />
           <input
-            placeholder="Suze"
+            placeholder="Size"
             value={size}
             onChange={e => setSize(e.target.value)}
           />
+
+          <input
+            placeholder="Width"
+            value={width}
+            onChange={e => setWidth(e.target.value)}
+          />
+
+          <input
+            placeholder="Height"
+            value={height}
+            onChange={e => setHeight(e.target.value)}
+          />
+
           <input
             placeholder="Weight"
             value={weight}
             onChange={e => setWeight(e.target.value)}
+          />
+          <input
+            placeholder="Comments"
+            value={comments}
+            onChange={e => setComments(e.target.value)}
           />
 
           <button onClick={handleSubmit}>Confirm</button>

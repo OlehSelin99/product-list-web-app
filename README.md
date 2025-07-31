@@ -1,27 +1,91 @@
-# vite-template-redux
+# Product List Web App
 
-Uses [Vite](https://vitejs.dev/), [Vitest](https://vitest.dev/), and [React Testing Library](https://github.com/testing-library/react-testing-library) to create a modern [React](https://react.dev/) app compatible with [Create React App](https://create-react-app.dev/)
+A simple React application for managing a list of products. This project is designed for learning purposes and demonstrates basic React concepts with Redux state management.
 
-```sh
-npx tiged reduxjs/redux-templates/packages/vite-template-redux my-app
+## 🚀 Features
+
+- **Add Products**: Add new products to your list
+- **View Products**: Display all products in a clean interface
+- **Remove Products**: Delete products from the list
+- **Modern UI**: Built with Ant Design components for a professional look
+
+## 🛠️ Technologies Used
+
+- **React 19** - Modern React with hooks
+- **TypeScript** - Type-safe JavaScript
+- **Redux Toolkit** - State management
+- **Ant Design** - UI component library
+- **Vite** - Fast build tool and dev server
+- **Vitest** - Testing framework
+
+## 📦 Installation
+
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd my-app
 ```
 
-## Goals
+2. Install dependencies:
+```bash
+npm install
+```
 
-- Easy migration from Create React App or Vite
-- As beginner friendly as Create React App
-- Optimized performance compared to Create React App
-- Customizable without ejecting
+3. Start the development server:
+```bash
+npm run dev
+```
 
-## Scripts
+4. Open your browser and navigate to `http://localhost:5173`
 
-- `dev`/`start` - start dev server and open browser
-- `build` - build for production
-- `preview` - locally preview production build
-- `test` - launch test runner
+## 🎯 Available Scripts
 
-## Inspiration
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build locally
+- `npm run test` - Run tests
+- `npm run lint` - Check code with ESLint
+- `npm run lint:fix` - Fix ESLint issues automatically
+- `npm run format` - Format code with Prettier
 
-- [Create React App](https://github.com/facebook/create-react-app/tree/main/packages/cra-template)
-- [Vite](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react)
-- [Vitest](https://github.com/vitest-dev/vitest/tree/main/examples/react-testing-lib)
+## 📁 Project Structure
+
+```
+src/
+├── app/                 # Redux store configuration
+├── features/
+│   └── list/          # Product list feature
+│       ├── ListProducts.tsx
+│       ├── ModalListProducts.tsx
+│       ├── ModalRemove.tsx
+│       └── productsSlice.ts
+├── App.tsx            # Main application component
+└── main.tsx          # Application entry point
+```
+
+## 🎓 Learning Objectives
+
+This project helps you learn:
+
+- **React Hooks**: Using useState, useEffect, and custom hooks
+- **Redux Toolkit**: State management with createSlice and useSelector
+- **TypeScript**: Type safety in React applications
+- **Component Architecture**: Organizing code into features
+- **Modern UI**: Using Ant Design components
+- **Testing**: Writing tests with React Testing Library
+
+## 🤝 Contributing
+
+This is a learning project. Feel free to:
+- Add new features
+- Improve the UI/UX
+- Add more tests
+- Refactor code for better organization
+
+## 📝 License
+
+This project is for educational purposes.
+
+---
+
+**Created by @oleh__selin** 🚀

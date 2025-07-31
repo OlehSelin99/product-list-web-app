@@ -26,6 +26,17 @@ const ModalListProducts: React.FC = () => {
     }
 
   const handleOk = () => {
+    if (
+      !form.name ||
+      !form.count ||
+      !form.width ||
+      !form.height ||
+      !form.weight
+    ) {
+      alert("Please, fill all cells.")
+      return
+    }
+
     dispatch(
       addProduct({
         id: uuidv4(),
@@ -51,42 +62,40 @@ const ModalListProducts: React.FC = () => {
       </Button>
 
       <Modal
-        title="Basic Modal"
-        closable={{ "aria-label": "Custom Close Button" }}
+        title="Add Product"
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
       >
-        <div>
+        <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
           <input
             value={form.name}
             onChange={handleChange("name")}
-            placeholder="Name"
+            placeholder="Name *"
           />
           <input
             value={form.count}
             onChange={handleChange("count")}
-            placeholder="Count"
-          />
-          <input
-            value={form.size}
-            onChange={handleChange("size")}
-            placeholder="Size"
+            placeholder="Count *"
+            type="number"
           />
           <input
             value={form.width}
             onChange={handleChange("width")}
-            placeholder="Width"
+            placeholder="Width *"
+            type="number"
           />
           <input
             value={form.height}
             onChange={handleChange("height")}
-            placeholder="Height"
+            placeholder="Height *"
+            type="number"
           />
           <input
             value={form.weight}
             onChange={handleChange("weight")}
-            placeholder="Weight"
+            placeholder="Weight *"
+            type="number"
           />
           <textarea
             value={form.comments}

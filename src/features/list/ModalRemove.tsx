@@ -45,9 +45,9 @@ const ModalRemove: React.FC = () => {
           <ul>
             {productList.map(product => (
               <li key={product.id}>
-                {product.name} — {product.count} шт.
+                {product.name} — {product.count} pieces.
                 <button onClick={() => handleDelete(product.id)}>
-                  Видалити
+                  Delete
                 </button>
               </li>
             ))}

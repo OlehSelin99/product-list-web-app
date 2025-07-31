@@ -3,7 +3,6 @@ import { Flex, Layout } from "antd"
 import ListProducts from "./features/list/ListProducts"
 import ModalListProducts from "./features/list/ModalListProducts"
 import ModalRemove from "./features/list/ModalRemove"
-import { DeleteProductButton } from "./features/button/DeleteProductButton"
 
 const { Header, Footer, Content } = Layout
 
@@ -50,10 +49,7 @@ const App: React.FC = () => (
       <Content style={contentStyle}>
         <div style={buttonStyle}>
           <ModalListProducts />
-
           <ModalRemove />
-
-          {/* <DeleteProductButton /> */}
         </div>
         <ListProducts />
       </Content>

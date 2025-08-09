@@ -1,4 +1,5 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit"
+import type { PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit"
 
 type FormState = {
   name: string
@@ -12,7 +13,7 @@ type FormState = {
 
 type ProductsState = {
   form: FormState
-  list: any[] // список продуктів
+  list: unknown[] // список продуктів
 }
 
 const initialState: ProductsState = {
@@ -41,7 +42,7 @@ const productsSlice = createSlice({
     resetForm: state => {
       state.form = initialState.form
     },
-    addProduct: (state, action: PayloadAction<any>) => {
+    addProduct: (state, action: PayloadAction<unknown>) => {
       state.list.push(action.payload)
     },
     removeProduct: (state, action: PayloadAction<string>) => {
